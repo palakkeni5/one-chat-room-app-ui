@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Header from "./components/Navbar";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { routes } from "./routing/routes";
+import { ToastContainer } from "react-toastify";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          {routes.map((route) => (
+            <Route path={route.path} element={route.element}></Route>
+          ))}
+        </Routes>
+      </BrowserRouter>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+    </Provider>
   );
 }
 
