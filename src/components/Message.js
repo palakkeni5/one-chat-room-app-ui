@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) =>
       marginBottom: "10px",
       padding: "10px",
       backgroundColor: "#A8DDFD",
-      width: "60%",
+      width: "100%",
+      minWidth: "100px",
       //height: "50px",
       textAlign: "left",
       font: "400 .9em 'Open Sans', sans-serif",
@@ -86,6 +87,7 @@ const useStyles = makeStyles((theme) =>
     messageContent: {
       padding: 0,
       margin: 0,
+      paddingBottom: 4,
     },
     messageTimeStampRight: {
       position: "absolute",
@@ -118,7 +120,7 @@ export const MessageLeft = (props) => {
   const message = props.message ? props.message : "no message";
   const timestamp = props.timestamp ? props.timestamp : "";
   const photoURL = props.photoURL ? props.photoURL : "dummy.js";
-  const displayName = props.displayName ? props.displayName : "名無しさん";
+  const displayName = props.displayName ? props.displayName : " ";
   const classes = useStyles();
   return (
     <>

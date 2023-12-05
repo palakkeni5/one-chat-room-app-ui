@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
 import Header from "./components/Navbar";
 import "react-toastify/dist/ReactToastify.css";

@@ -1,4 +1,4 @@
-import authenticatedClient, { client } from "./client";
+import { client, authenticatedClient } from "./client";
 
 export const registerUser = async (fullName, username, password) => {
   const requestBody = {
@@ -28,5 +28,21 @@ export const loginUser = async (username, password) => {
     };
   } else {
     throw new Error(response.data.msg);
+  }
+};
+
+export const getChatHistory = async () => {
+  const response = await authenticatedClient.get("/chats");
+  if (response.status === 200) {
+    console.log(response);
+    if (response.data.code === 0) {
+      throw new Error("Network error");
+    }
+    return {
+      success: true,
+      data: response.data,
+    };
+  } else {
+    throw new Error("Network error");
   }
 };

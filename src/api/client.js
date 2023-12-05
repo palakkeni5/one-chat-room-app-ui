@@ -13,16 +13,16 @@ export const client = axios.create({
   },
 });
 
-const authenticatedClient = () => {
-  return axios.create({
-    baseURL: BASE_URL,
-    validateStatus: (_) => {
-      return true;
-    },
-    headers: {
-      Authorization: "Bearer " + localStorage.getItem("accessToken"),
-    },
-  });
-};
+export const authenticatedClient = axios.create({
+  baseURL: BASE_URL,
+  validateStatus: (_) => {
+    return true;
+  },
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    Authorization: localStorage.getItem("accessToken"),
+  },
+});
 
 export default authenticatedClient;

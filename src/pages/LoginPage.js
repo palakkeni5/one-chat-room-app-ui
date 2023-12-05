@@ -14,14 +14,18 @@ import { loginUser } from "../api/apiService";
 import { NOTIFICATION_TYPE, emitNotification } from "../utils/emitNotification";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setAccessTokenState, setUserIdState } from "../redux/authSlice";
+import {
+  setAccessTokenState,
+  setUserIdState,
+  setUsernameState,
+} from "../redux/authSlice";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const accessToken = useSelector((state) => state.auth.accessToken);
   useEffect(() => {
-    if (accessToken !== null && accessToken !== undefined) {
+    if (accessToken !== null) {
       navigate(ROUTE_PATHS.dashboard);
     }
   }, [accessToken]);
@@ -35,10 +39,8 @@ const LoginPage = () => {
       const response = await loginUser(username, password);
       dispatch(setAccessTokenState(response.data.token));
       dispatch(setUserIdState(response.data.userId));
+      dispatch(setUsernameState(username));
       emitNotification(NOTIFICATION_TYPE.SUCCESS, "Succesfully Logged in");
-      setTimeout(() => {
-        navigate(ROUTE_PATHS.dashboard);
-      }, 1000);
     } catch (error) {
       emitNotification(NOTIFICATION_TYPE.ERROR, error.message);
     }
