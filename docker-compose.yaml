@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  one-chat-room-app-ui: 
+    build: .
+    container_name: "one-chat-room-app-ui"
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true

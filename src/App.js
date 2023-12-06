@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
 import Header from "./components/Navbar";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +15,11 @@ function App() {
         <Header />
         <Routes>
           {routes.map((route) => (
-            <Route path={route.path} element={route.element}></Route>
+            <Route
+              key={route.path}
+              path={route.path}
+              element={route.element}
+            ></Route>
           ))}
         </Routes>
       </BrowserRouter>
