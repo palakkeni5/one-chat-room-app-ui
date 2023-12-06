@@ -25,7 +25,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const accessToken = useSelector((state) => state.auth.accessToken);
   useEffect(() => {
-    if (accessToken !== null) {
+    if (!Object.is(accessToken, null) && !Object.is(accessToken, undefined)) {
       navigate(ROUTE_PATHS.dashboard);
     }
   }, [accessToken]);
