@@ -5,5 +5,5 @@ services:
     container_name: "one-chat-room-app-ui"
     ports:
       - '3000:3000'
-    stdin_open: true
-    tty: true
+    # stdin_open: true
+    # tty: true
